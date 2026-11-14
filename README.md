@@ -1,27 +1,13 @@
-# Aplio: job applications
+# Aplio
 
-Dashboard: https://jaswanth-akireddy.github.io/aplio/
+Tailored, ATS-optimized one-page resumes for every job I apply to.
+Dashboard: https://jaswanth-akireddy.github.io/aplio/ (sign-in required)
 
-A tailored, ATS-optimized one-page resume for every job I apply to, generated on a schedule.
+- **Website:** `index.html` on GitHub Pages. Sign-in and data via Supabase (owner-only, row-level security).
+- **Generation:** a scheduled Claude run (8:37 AM and 5:37 PM IST) follows [TAILORING.md](TAILORING.md):
+  it reads queued jobs from Supabase, tailors the master resume, compiles it with LaTeX
+  (`scripts/build_resume.sh`), and records the result.
+- **Files:** resumes are stored in `files/` **encrypted** (AES-256-GCM, `scripts/seal.py`).
+  The key lives in Supabase, so only the signed-in owner's browser can open them.
 
-## How it works
-1. **Add a job:** open a "New job" issue (dashboard button) with the posting link and description.
-2. **Scheduled run:** Claude tailors `master/master_resume.tex` to the posting, compiles it with
-   LaTeX, checks it is one page and parses cleanly, and commits it to `jobs/<slug>/`.
-   The procedure is in [TAILORING.md](TAILORING.md).
-3. **Ready:** the issue gets a comment with the PDF link, match score and gaps, and the
-   label changes from `queued` to `ready`. The dashboard lists it.
-4. **Track:** label the issue `applied`, `interviewing`, `offer` or `rejected`; the next run syncs it.
-
-## Files
-| Path | What |
-|---|---|
-| `index.html` | Dashboard (GitHub Pages) |
-| `master/master_resume.tex` | Master resume (source of truth) |
-| `master/profile.md` | Extra true facts, confirmed skills, and skills never to claim |
-| `data/jobs.json`, `data/companies.json` | Dashboard data, written by the run |
-| `jobs/<slug>/` | Tailored `.tex`, `.pdf`, extracted text, and `report.md` per job |
-| `scripts/build_resume.sh` | Compile + one-page + ATS text checks |
-| `TAILORING.md` | Instructions each scheduled run follows |
-
-Only issues opened by `jaswanth-akireddy` are processed.
+No personal data is stored in this repo in readable form.
