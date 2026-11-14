@@ -1,0 +1,41 @@
+name: New job
+description: Add a job posting. A tailored resume is generated on the next scheduled run.
+title: "[Job] <Company> - <Role>"
+labels: ["job", "queued"]
+body:
+  - type: input
+    id: url
+    attributes:
+      label: Job link
+      placeholder: https://www.amazon.jobs/en/jobs/1234567/...
+    validations:
+      required: true
+  - type: input
+    id: company
+    attributes:
+      label: Company
+      placeholder: Amazon
+    validations:
+      required: true
+  - type: input
+    id: role
+    attributes:
+      label: Role title
+      placeholder: Software Development Engineer II
+    validations:
+      required: true
+  - type: input
+    id: job_id
+    attributes:
+      label: Job ID (optional)
+      placeholder: "10473118"
+  - type: textarea
+    id: description
+    attributes:
+      label: Job description
+      description: Paste the full posting text (responsibilities and qualifications). If left empty, the run will try to read it from the link.
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes for the tailoring (optional)
+      placeholder: e.g. emphasise the GenAI work; this team uses Kafka
