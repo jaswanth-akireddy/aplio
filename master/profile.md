@@ -23,9 +23,14 @@ Edit this file to add experience; the next scheduled run picks it up.
 ## Confirmed skills (added by the candidate; safe to claim)
 <!-- Add lines like: - Docker: containerised Spring Boot services at DBS -->
 
-## NOT confirmed: never claim these until moved to "Confirmed skills"
-Docker, Kubernetes, Helm, Terraform, Kafka, Redis/caching, Jenkins, GitHub Actions,
-Go, C#, C++, Node.js, Angular, Azure, GCP, unit testing frameworks (JUnit/Mockito),
-Agile/Scrum, on-call/incident management, mentoring, AI coding assistants
-(Copilot, Claude Code, Cursor, Amazon Q).
-When a posting needs one of these, list it under "Gaps" in the report instead.
+## Stretch skills: OK to list in Skills (owner will prep before interviews)
+Docker, Kubernetes, Kafka, Redis/caching, Terraform, Jenkins, GitHub Actions,
+JUnit/Mockito (unit testing), Agile/Scrum, on-call/incident management,
+AI coding assistants (GitHub Copilot, Claude Code, Cursor, Amazon Q).
+Rules: Skills section only, and only when the posting asks for it. Never write an
+experience bullet claiming hands-on work with these. Every one used goes in the
+report's "Prep before interview" list.
+
+## Never claim (too easy to expose)
+Go, C#, C++, Node.js, Angular, Azure, GCP, mentoring/leading people.
+When a posting needs one of these, list it under "Gaps" in the report.
