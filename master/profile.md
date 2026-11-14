@@ -3,6 +3,9 @@
 Tailored resumes may only use facts from `master_resume.tex` and this file.
 Edit this file to add experience; the next scheduled run picks it up.
 
+## Current title
+- Amazon: Software Development Engineer II, promoted from SDE I (joined Feb 2025 as SDE I). Show both: "Software Development Engineer II (promoted from SDE I)". Headline: "Software Development Engineer II"; mirror the posting's wording ("Software Engineer II", "SDE 2") in the Summary.
+
 ## Contact (exactly as printed)
 - Name: Jaswanth Akireddy
 - Phone: +91-9666735445
