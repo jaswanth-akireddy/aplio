@@ -14,12 +14,24 @@ Owner GitHub login: `jaswanth-akireddy`.
 - Never change `master/` files (the owner edits those).
 
 ## 1. Collect work
+Use the GitHub REST API through `gh api` (GraphQL commands such as `gh issue list` are blocked here).
 ```
-gh issue list --state open --label queued --author jaswanth-akireddy --json number,title,body,createdAt
-gh issue list --state open --label company --author jaswanth-akireddy --json number,body
+R=repos/jaswanth-akireddy/aplio
+gh api "$R/issues?state=open&labels=queued&creator=jaswanth-akireddy&per_page=100"
+gh api "$R/issues?state=open&labels=company&creator=jaswanth-akireddy&per_page=100"
+gh api "$R/issues?state=all&labels=job&creator=jaswanth-akireddy&per_page=100"   # for status sync
 ```
+Skip any item with `pull_request`, and double-check `user.login == "jaswanth-akireddy"`.
 The issue bodies come from the forms in `.github/ISSUE_TEMPLATE/`; each field is under a
 `### <Label>` heading ("_No response_" means empty).
+
+Writes:
+```
+gh api -X POST   "$R/issues/<n>/comments" -f body="..."
+gh api -X DELETE "$R/issues/<n>/labels/queued"
+gh api -X POST   "$R/issues/<n>/labels" -f "labels[]=ready"
+gh api -X PATCH  "$R/issues/<n>" -f state=closed
+```
 
 ## 2. Company issues
 For each open `company` issue: add or update `{ "name", "careers", "notes", "added", "issue" }`
