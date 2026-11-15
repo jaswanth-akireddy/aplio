@@ -5,6 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>Aplio</title>
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="icon" href="icons/icon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#1f5f4a">
+<meta name="apple-mobile-web-app-title" content="Aplio">
 <style>
   :root {
     --bg: #f6f5f1; --card: #fff; --ink: #1d1d1b; --muted: #6b6a64; --line: #e4e2db; --soft: #efeee9;
@@ -30,7 +36,9 @@
   [hidden] { display: none !important; }
   .wrap { max-width: 980px; margin: 0 auto; padding: 28px 18px 72px; }
   header { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between; margin-bottom: 22px; }
-  h1 { font: 600 26px/1.2 ui-serif, Georgia, serif; margin: 0; letter-spacing: -0.01em; }
+  h1 { font: 600 26px/1.2 ui-serif, Georgia, serif; margin: 0; letter-spacing: -0.01em; display: flex; align-items: center; gap: 10px; }
+  .logo { width: 34px; height: 34px; border-radius: 9px; flex: none; }
+  .auth .logo { width: 48px; height: 48px; border-radius: 12px; }
   .sub { color: var(--muted); margin: 2px 0 0; font-size: 14px; }
   .actions { display: flex; flex-wrap: wrap; gap: 8px; }
   .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 8px 14px; border-radius: 9px; border: 1px solid var(--line);
@@ -116,7 +124,7 @@
 <!-- Sign in -->
 <div class="center" id="v-auth" hidden>
   <div class="auth">
-    <h1>Aplio</h1>
+    <h1><img class="logo" src="icons/icon.svg" alt="">Aplio</h1>
     <p class="sub">Tailored resumes for every job you apply to.</p>
     <form id="f-auth">
       <input class="field" type="email" name="email" required autocomplete="email" placeholder="you@gmail.com">
@@ -139,7 +147,7 @@
 <div class="wrap" id="v-app" hidden>
   <header>
     <div>
-      <h1>Aplio</h1>
+      <h1><img class="logo" src="icons/icon.svg" alt="">Aplio</h1>
       <p class="sub" id="next-run"></p>
     </div>
     <div class="actions">
