@@ -247,7 +247,7 @@
     : t === "done" ? ["offer", "rejected", "archived"].includes(j.status)
     : j.status === t;
 
-  let jobs = [], companies = [], tab = "all", fileKey = null, editing = null;
+  let jobs = [], companies = [], tab = "all", fileKey = null, editing = null, fullName = "";
 
   // ---------- auth ----------
   $("f-auth").addEventListener("submit", async e => {
@@ -267,8 +267,10 @@
     if (!ok) { show("v-denied"); return; }
     show("v-app");
     if (booted) return; booted = true;
-    $("next-run").textContent = `Next tailoring run ${nextRun()}`;
-    setInterval(() => $("next-run").textContent = `Next tailoring run ${nextRun()}`, 60000);
+    try { const { data: me } = await sb.rpc("me"); fullName = (me && me.full_name) || ""; } catch {}
+    const hello = () => `${fullName ? `Hi ${fullName.split(" ")[0]} · ` : ""}Next tailoring run ${nextRun()}`;
+    $("next-run").textContent = hello();
+    setInterval(() => $("next-run").textContent = hello(), 60000);
     await Promise.all([loadJobs(), loadCompanies()]);
     sb.channel("jobs").on("postgres_changes", { event: "*", schema: "public", table: "jobs" }, () => loadJobs()).subscribe();
   }
@@ -448,7 +450,7 @@
         if (w) { w.location = url; }
         else {
           const a = document.createElement("a"); a.href = url;
-          a.download = `Jaswanth_Akireddy_Resume_${j.company.replace(/[^A-Za-z0-9]+/g, "_")}.pdf`;
+          a.download = `${(fullName || "Resume").replace(/[^A-Za-z0-9]+/g, "_")}_Resume_${j.company.replace(/[^A-Za-z0-9]+/g, "_")}.pdf`.replace("Resume_Resume", "Resume");
           document.body.appendChild(a); a.click(); a.remove();
         }
         setTimeout(() => URL.revokeObjectURL(url), 60000);
